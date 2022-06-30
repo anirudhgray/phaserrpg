@@ -9,7 +9,7 @@
             274, 0, 92, 93, 93, 93, 93, 368, 371, 368, 93, 93, 93, 93, 93, 93, 93, 94, 0, 0,
             0, 274, 92, 93, 368, 414, 368, 368, 368, 368, 368, 368, 368, 371, 368, 368, 93, 94, 0, 0,
             0, 274, 92, 93, 368, 368, 368, 368, 368, 368, 368, 368, 368, 368, 368, 368, 93, 94, 0, 0,
-            0, 0, 92, 93, 368, 371, 368, 368, 368, 370, 368, 416, 368, 368, 368, 370, 93, 94, 0, 0,
+            0, 0, 92, 93, 368, 371, 368, 368, 368, 370, 368, 368, 368, 368, 368, 370, 93, 94, 0, 0,
             0, 0, 92, 93, 368, 368, 368, 368, 368, 368, 368, 368, 368, 368, 368, 368, 93, 94, 0, 0,
             0, 0, 92, 93, 368, 368, 368, 368, 368, 368, 368, 368, 368, 368, 368, 372, 93, 94, 0, 0,
             0, 0, 92, 93, 368, 368, 416, 368, 368, 368, 368, 368, 368, 368, 368, 368, 93, 94, 0, 0,
@@ -38,15 +38,15 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 442, 443, 443, 443, 443, 444, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 487, 488, 488, 488, 488, 489, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 532, 533, 533, 533, 533, 534, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 322, 322, 0, 0, 0, 685, 686, 687, 688, 689, 690, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 322, 322, 322, 322, 0, 730, 731, 732, 733, 734, 735, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 322, 322, 322, 322, 0, 775, 776, 777, 778, 779, 780, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 322, 322, 0, 0, 0, 683, 686, 687, 688, 689, 684, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 322, 322, 322, 322, 0, 728, 731, 732, 733, 734, 729, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 322, 322, 322, 322, 0, 773, 776, 777, 778, 779, 774, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 322, 322, 322, 322, 322, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 322, 322, 322, 322, 322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 322, 322, 322, 322, 322, 322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 322, 322, 322, 322, 322, 322, 322, 322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 322, 322, 322, 322, 322, 322, 322, 322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 322, 322, 322, 322, 322, 322, 322, 322, 0, 0, 322, 322, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 322, 322, 0, 322, 322, 322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 322, 322, 322, 322, 0, 0, 322, 322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 322, 322, 322, 322, 0, 322, 322, 322, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 322, 322, 322, 322, 0, 322, 322, 322, 0, 0, 322, 322, 0, 0, 0, 0, 0, 0,
             0, 0, 322, 322, 322, 322, 322, 322, 322, 322, 0, 322, 322, 322, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 322, 322, 322, 322, 322, 322, 322, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 322, 322, 322, 322, 0, 0, 322, 0, 0, 0, 0, 0, 0, 0,
@@ -77,7 +77,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 970, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 75, 76, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 119, 120, 121, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -108,7 +108,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 880, 881, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 925, 926, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 970, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -120,6 +120,12 @@
          "id":4,
          "name":"infrontofplayer",
          "opacity":1,
+         "properties":[
+                {
+                 "name":"ge_heightShift",
+                 "type":"float",
+                 "value":3
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":20,
@@ -136,7 +142,7 @@
         {
          "columns":45,
          "firstgid":1,
-         "image":"..\/..\/..\/tech-learning\/rpg\/src\/assets\/cloud_tileset.png",
+         "image":"cloud_tileset.png",
          "imageheight":448,
          "imagewidth":720,
          "margin":0,
@@ -6323,6 +6329,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -6331,6 +6342,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -6341,6 +6357,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -6349,6 +6370,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -6359,6 +6385,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -6367,6 +6398,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -6377,6 +6413,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -6385,6 +6426,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -6730,6 +6776,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -6738,6 +6789,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -6748,6 +6804,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -6756,6 +6817,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -6766,6 +6832,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -6774,6 +6845,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -6784,6 +6860,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -6792,6 +6873,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -7137,6 +7223,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -7145,6 +7236,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -7155,6 +7251,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -7163,6 +7264,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -7173,6 +7279,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -7181,6 +7292,11 @@
                  "properties":[
                         {
                          "name":"collides",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
                          "type":"bool",
                          "value":true
                         }]
@@ -7191,7 +7307,12 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
+                         "value":false
                         }]
                 }, 
                 {
@@ -7200,7 +7321,12 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
+                         "value":false
                         }]
                 },
             
@@ -7576,15 +7702,6 @@
                         }]
                 }, 
                 {
-                 "id":821,
-                 "properties":[
-                        {
-                         "name":"collides",
-                         "type":"string",
-                         "value":""
-                        }]
-                }, 
-                {
                  "id":822,
                  "properties":[
                         {
@@ -7745,8 +7862,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":840,
                  "properties":[
@@ -7755,7 +7871,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":841,
                  "properties":[
@@ -7926,8 +8043,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":860,
                  "properties":[
@@ -7936,7 +8052,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":861,
                  "properties":[
@@ -8105,19 +8222,39 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_heightShift",
+                         "type":"int",
+                         "value":3
                         }]
-                },
-            
+                }, 
                 {
                  "id":880,
                  "properties":[
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_heightShift",
+                         "type":"int",
+                         "value":3
                         }]
-                }, 
+                },
+            
                 {
                  "id":881,
                  "properties":[
@@ -8288,8 +8425,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":900,
                  "properties":[
@@ -8298,7 +8434,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":901,
                  "properties":[
@@ -8469,8 +8606,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":920,
                  "properties":[
@@ -8479,7 +8615,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":921,
                  "properties":[
@@ -8513,7 +8650,17 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_heightShift",
+                         "type":"float",
+                         "value":2.5
                         }]
                 }, 
                 {
@@ -8523,6 +8670,11 @@
                          "name":"collides",
                          "type":"string",
                          "value":""
+                        }, 
+                        {
+                         "name":"ge_heightShift",
+                         "type":"int",
+                         "value":3
                         }]
                 }, 
                 {
@@ -8586,6 +8738,11 @@
                          "name":"collides",
                          "type":"string",
                          "value":""
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -8595,6 +8752,11 @@
                          "name":"collides",
                          "type":"string",
                          "value":""
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -8650,8 +8812,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":940,
                  "properties":[
@@ -8660,7 +8821,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":941,
                  "properties":[
@@ -8831,8 +8993,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":960,
                  "properties":[
@@ -8841,7 +9002,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":961,
                  "properties":[
@@ -8920,6 +9082,11 @@
                         {
                          "name":"collides",
                          "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
                          "value":true
                         }]
                 }, 
@@ -8993,6 +9160,11 @@
                          "name":"collides",
                          "type":"string",
                          "value":""
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -9002,6 +9174,11 @@
                          "name":"collides",
                          "type":"string",
                          "value":""
+                        }, 
+                        {
+                         "name":"ge_collide",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {
@@ -9012,8 +9189,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":980,
                  "properties":[
@@ -9022,7 +9198,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":981,
                  "properties":[
@@ -9193,8 +9370,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1000,
                  "properties":[
@@ -9203,7 +9379,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1001,
                  "properties":[
@@ -9374,8 +9551,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1020,
                  "properties":[
@@ -9384,7 +9560,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1021,
                  "properties":[
@@ -9555,8 +9732,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1040,
                  "properties":[
@@ -9565,7 +9741,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1041,
                  "properties":[
@@ -9736,8 +9913,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1060,
                  "properties":[
@@ -9746,7 +9922,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1061,
                  "properties":[
@@ -9917,8 +10094,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1080,
                  "properties":[
@@ -9927,7 +10103,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1081,
                  "properties":[
@@ -9944,6 +10121,11 @@
                          "name":"collides",
                          "type":"string",
                          "value":""
+                        }, 
+                        {
+                         "name":"ge_heightShift",
+                         "type":"int",
+                         "value":1
                         }]
                 }, 
                 {
@@ -10098,8 +10280,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1100,
                  "properties":[
@@ -10108,7 +10289,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1101,
                  "properties":[
@@ -10279,8 +10461,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1120,
                  "properties":[
@@ -10289,7 +10470,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1121,
                  "properties":[
@@ -10460,8 +10642,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1140,
                  "properties":[
@@ -10470,7 +10651,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1141,
                  "properties":[
@@ -10641,8 +10823,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1160,
                  "properties":[
@@ -10651,7 +10832,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1161,
                  "properties":[
@@ -10822,8 +11004,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1180,
                  "properties":[
@@ -10832,7 +11013,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1181,
                  "properties":[
@@ -11003,8 +11185,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1200,
                  "properties":[
@@ -11013,7 +11194,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1201,
                  "properties":[
@@ -11184,8 +11366,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1220,
                  "properties":[
@@ -11194,7 +11375,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1221,
                  "properties":[
@@ -11365,8 +11547,7 @@
                          "type":"string",
                          "value":""
                         }]
-                },
-            
+                }, 
                 {
                  "id":1240,
                  "properties":[
@@ -11375,7 +11556,8 @@
                          "type":"string",
                          "value":""
                         }]
-                }, 
+                },
+            
                 {
                  "id":1241,
                  "properties":[
