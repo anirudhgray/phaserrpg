@@ -34,7 +34,7 @@ export default function Game() {
 
     this.cameras.main.startFollow(playerSprite);
     this.cameras.main.roundPixels = true;
-    this.cameras.main.setFollowOffset(-playerSprite.width, -playerSprite.height)
+    this.cameras.main.setFollowOffset(-playerSprite.width, -playerSprite.height*2)
 
     const gridEngineConfig = {
       characters: [
@@ -83,7 +83,7 @@ export default function Game() {
 
 
   useEffect(() => {
-    new Phaser.Game({
+    const gameObj = new Phaser.Game({
       plugins: {
         scene: [
           {
@@ -107,6 +107,10 @@ export default function Game() {
       parent: 'game',
       backgroundColor: "#48C4F8"
     });
+    window.addEventListener('resize', () => {
+      gameObj.scale.resize(window.innerWidth, window.innerHeight);
+    });
+  
   }, [])
 
   return (
