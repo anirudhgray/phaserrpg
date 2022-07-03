@@ -162,11 +162,7 @@ function create () {
           console.log(disconplayerid)
           if (disconplayerid === players[id].id) {
             console.log("someone left")
-            gridEngineConfig.characters = gridEngineConfig.characters.filter(
-              (char) => {
-                return char.id !== `player${players[id].id}`
-              }
-            )
+            self.gridEngine.removeCharacter(`player${disconplayerid}`)
             self.newPlayerSprite.destroy()
           }
         })
