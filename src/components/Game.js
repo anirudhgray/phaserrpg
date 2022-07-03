@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import * as Phaser from 'phaser'
 import { GridEngine } from 'grid-engine'
 import cloudCityJSON from '../assets/cloud_city.json'
@@ -41,17 +41,18 @@ function create () {
       layer.scale = 3
     }
 
-    let newPlayerSprite = this.add.sprite(0,0,'player')
-    newPlayerSprite.scale = 3
-    newPlayerSprite.setDepth(2)
+    this.newPlayerSprite = this.add.sprite(0,0,'player')
+    this.newPlayerSprite.scale = 3
+    this.newPlayerSprite.setDepth(2)
     gridEngineConfig.characters.push({
       id:`player${data.id}`,
-      sprite: newPlayerSprite,
+      sprite: this.newPlayerSprite,
       walkingAnimationMapping: data.avatar,
       startPosition: {
         x: data.x,
         y: data.y
-      }
+      },
+      speed: 4
     })
 
     gridEngineConfig.characters.forEach((char) => {
@@ -84,14 +85,20 @@ function create () {
             return char.id !== `player${data.id}`
           }
         )
-        newPlayerSprite.destroy()
+        this.newPlayerSprite.destroy()
       }
     })
+
+    self.gridEngine.positionChangeStarted().subscribe(
+      ({ charId, exitTile, enterTile }) => {
+        socket.emit('newpos', {char:charId,x:enterTile.x, y:enterTile.y})
+      }
+    )
 
   })
 
   socket.on('currentPlayers', (players) =>{
-    console.log("welcome")
+    console.log("welcome"+socket.id)
     Object.keys(players).forEach(function (id) {
       if (players[id].id === socket.id) {
         
@@ -103,28 +110,29 @@ function create () {
           layer.scale = 3
         }
 
-        let playerSprite = self.add.sprite(0, 0, 'player')
-        playerSprite.scale = 3
-        playerSprite.setDepth(-1)
+        self.playerSprite = self.add.sprite(0, 0, 'player')
+        self.playerSprite.scale = 3
+        self.playerSprite.setDepth(-1)
       
-        self.cameras.main.startFollow(playerSprite)
+        self.cameras.main.startFollow(self.playerSprite)
         self.cameras.main.roundPixels = true
-        self.cameras.main.setFollowOffset(-playerSprite.width, -playerSprite.height * 2)
+        self.cameras.main.setFollowOffset(-self.playerSprite.width, -self.playerSprite.height * 2)
 
         gridEngineConfig.characters.push(
           {
             id:'player',
-            sprite: playerSprite,
+            sprite: self.playerSprite,
             walkingAnimationMapping: players[id].avatar,
             startPosition: {
               x: players[id].x,
               y: players[id].y
-            }
+            },
+            speed: 4
           }
         )
         self.gridEngine.create(cloudCityTilemap, gridEngineConfig)
 
-        self.gridEngine.positionChangeFinished().subscribe(
+        self.gridEngine.positionChangeStarted().subscribe(
           ({ charId, exitTile, enterTile }) => {
             socket.emit('newpos', {char:charId,x:enterTile.x, y:enterTile.y})
           }
@@ -137,17 +145,18 @@ function create () {
             .createLayer(i, 'Cloud City', 0, 0)
           layer.scale = 3
         }
-        let newPlayerSprite = self.add.sprite(0,0,'player')
-        newPlayerSprite.setDepth(2)
-        newPlayerSprite.scale = 3
+        self.newPlayerSprite = self.add.sprite(0,0,'player')
+        self.newPlayerSprite.setDepth(2)
+        self.newPlayerSprite.scale = 3
         gridEngineConfig.characters.push({
           id:`player${players[id].id}`,
-          sprite: newPlayerSprite,
+          sprite: self.newPlayerSprite,
           walkingAnimationMapping: players[id].avatar,
           startPosition: {
             x: players[id].x,
             y: players[id].y
-          }
+          },
+          speed:4
         })
         self.gridEngine.create(cloudCityTilemap, gridEngineConfig)
 
@@ -162,7 +171,7 @@ function create () {
                 return char.id !== `player${players[id].id}`
               }
             )
-            newPlayerSprite.destroy()
+            self.newPlayerSprite.destroy()
           }
         })
       }
@@ -170,8 +179,27 @@ function create () {
   })
   socket.on('playerMove', (movingplayer) => {
     if (movingplayer.playerid !== socket.id) {
-      self.gridEngine.move(`player${movingplayer.playerid}`, movingplayer.direction)
-    }
+      self.gridEngine.moveTo(`player${movingplayer.playerid}`, movingplayer.position)
+      // const locTimeout = setTimeout(() => {
+      //   self.gridEngine.setPosition(`player${movingplayer.playerid}`, movingplayer.position)
+      // }, 2000)
+      // if (self.gridEngine.getPosition(`player${movingplayer.playerid}`) === movingplayer.position) {
+      //   clearTimeout(locTimeout)
+      // }
+      // const posTimeout = setTimeout(() => {
+      //   console.log("starting backup move")
+      //   self.gridEngine.moveTo(`player${movingplayer.playerid}`, movingplayer.position)
+      // }, 1000)
+      // const locTimeout = setTimeout(() => {
+      //   self.gridEngine.setPosition(`player${movingplayer.playerid}`, movingplayer.position)
+      // }, 2000);
+      // if (self.gridEngine.getPosition(`player${movingplayer.playerid}`) === movingplayer.position) {
+      //   clearTimeout(locTimeout)
+      // }
+    } 
+    // else {
+    //   self.gridEngine.moveTo('player', movingplayer.position)
+    // }
   })
 
   var gridEngineConfig = {
@@ -181,9 +209,33 @@ function create () {
   }
 
   this.gridEngine.create(cloudCityTilemap, gridEngineConfig)
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      socket.emit('getPlayers')
+      socket.on('positions', (players) => {
+        console.log('player positions received')
+        console.log(players)
+        gridEngineConfig.characters.forEach((char) => {
+          if (char.id !== 'player') {
+            console.log("shifting char" + char.id + "to " + players[char.id.slice(6)].x + " " +players[char.id.slice(6)].y)
+            this.gridEngine.setPosition(char.id, {
+              x:players[char.id.slice(6)].x-1,
+              y:players[char.id.slice(6)].y
+            })
+            this.gridEngine.moveTo(char.id, {
+              x:players[char.id.slice(6)].x,
+              y:players[char.id.slice(6)].y
+            })
+          }
+        })
+      })
+    }
+  })
 }
 
 function update () {
+
   const cursors = this.input.keyboard.createCursorKeys()
   if (cursors.left.isDown && cursors.up.isDown) {
     this.gridEngine.move('player', 'up-left')
@@ -225,7 +277,7 @@ const gameArea = new Phaser.Game({
     render: {
       antialias: false
     },
-    type: Phaser.CANVAS,
+    type: Phaser.AUTO,
     width: window.innerWidth,
     height: window.innerHeight,
     scene: {

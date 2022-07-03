@@ -1,5 +1,5 @@
 import {io} from 'socket.io-client'
-const ENDPOINT = 'http://localhost:8081'
+export const ENDPOINT = 'https://phaserrpg-server.herokuapp.com/'
 
 export const socket = io(ENDPOINT, {forceNew: true})
 
