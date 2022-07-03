@@ -80,7 +80,11 @@ function create () {
       console.log(disconplayerid)
       if (disconplayerid === data.id) {
         console.log("someone left")
-        this.gridEngine.removeCharacter(`player${disconplayerid}`)
+        gridEngineConfig.characters = gridEngineConfig.characters.filter(
+          (char) => {
+            return char.id !== `player${data.id}`
+          }
+        )
         this.newPlayerSprite.destroy()
       }
     })
@@ -162,7 +166,11 @@ function create () {
           console.log(disconplayerid)
           if (disconplayerid === players[id].id) {
             console.log("someone left")
-            self.gridEngine.removeCharacter(`player${disconplayerid}`)
+            gridEngineConfig.characters = gridEngineConfig.characters.filter(
+              (char) => {
+                return char.id !== `player${players[id].id}`
+              }
+            )
             self.newPlayerSprite.destroy()
           }
         })
