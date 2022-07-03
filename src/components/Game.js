@@ -179,27 +179,9 @@ function create () {
   })
   socket.on('playerMove', (movingplayer) => {
     if (movingplayer.playerid !== socket.id) {
+      console.log(`moving ${movingplayer.playerid} to ${movingplayer.position.x}, ${movingplayer.position.y}`)
       self.gridEngine.moveTo(`player${movingplayer.playerid}`, movingplayer.position)
-      // const locTimeout = setTimeout(() => {
-      //   self.gridEngine.setPosition(`player${movingplayer.playerid}`, movingplayer.position)
-      // }, 2000)
-      // if (self.gridEngine.getPosition(`player${movingplayer.playerid}`) === movingplayer.position) {
-      //   clearTimeout(locTimeout)
-      // }
-      // const posTimeout = setTimeout(() => {
-      //   console.log("starting backup move")
-      //   self.gridEngine.moveTo(`player${movingplayer.playerid}`, movingplayer.position)
-      // }, 1000)
-      // const locTimeout = setTimeout(() => {
-      //   self.gridEngine.setPosition(`player${movingplayer.playerid}`, movingplayer.position)
-      // }, 2000);
-      // if (self.gridEngine.getPosition(`player${movingplayer.playerid}`) === movingplayer.position) {
-      //   clearTimeout(locTimeout)
-      // }
-    } 
-    // else {
-    //   self.gridEngine.moveTo('player', movingplayer.position)
-    // }
+    }
   })
 
   var gridEngineConfig = {
