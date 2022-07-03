@@ -80,7 +80,7 @@ function create () {
       console.log(disconplayerid)
       if (disconplayerid === data.id) {
         console.log("someone left")
-        this.gridEngine.removeCharacter(disconplayerid)
+        this.gridEngine.removeCharacter(`player${disconplayerid}`)
         this.newPlayerSprite.destroy()
       }
     })
