@@ -1,5 +1,5 @@
 import {io} from 'socket.io-client'
-export const ENDPOINT = 'https://phaserrpg-server.herokuapp.com/'
+export const ENDPOINT = 'https://phaserrpg-server.herokuapp.com'
 
 export const socket = io(ENDPOINT, {forceNew: true})
 

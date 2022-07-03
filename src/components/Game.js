@@ -89,11 +89,11 @@ function create () {
       }
     })
 
-    self.gridEngine.positionChangeStarted().subscribe(
-      ({ charId, exitTile, enterTile }) => {
-        socket.emit('newpos', {char:charId,x:enterTile.x, y:enterTile.y})
-      }
-    )
+    // self.gridEngine.positionChangeStarted().subscribe(
+    //   ({ charId, exitTile, enterTile }) => {
+    //     socket.emit('newpos', {char:charId,x:enterTile.x, y:enterTile.y})
+    //   }
+    // )
 
   })
 
@@ -132,11 +132,11 @@ function create () {
         )
         self.gridEngine.create(cloudCityTilemap, gridEngineConfig)
 
-        self.gridEngine.positionChangeStarted().subscribe(
-          ({ charId, exitTile, enterTile }) => {
-            socket.emit('newpos', {char:charId,x:enterTile.x, y:enterTile.y})
-          }
-        )
+        // self.gridEngine.positionChangeStarted().subscribe(
+        //   ({ charId, exitTile, enterTile }) => {
+        //     socket.emit('newpos', {char:charId,x:enterTile.x, y:enterTile.y})
+        //   }
+        // )
       } else {
         var cloudCityTilemap = self.make.tilemap({ key: 'cloud-city-map' })
         cloudCityTilemap.addTilesetImage('Cloud City', 'tiles')
@@ -180,7 +180,17 @@ function create () {
   socket.on('playerMove', (movingplayer) => {
     if (movingplayer.playerid !== socket.id) {
       console.log(`moving ${movingplayer.playerid} to ${movingplayer.position.x}, ${movingplayer.position.y}`)
-      self.gridEngine.moveTo(`player${movingplayer.playerid}`, movingplayer.position)
+
+      console.log(`at ${self.gridEngine.getPosition(`player${movingplayer.playerid}`).x},${self.gridEngine.getPosition(`player${movingplayer.playerid}`).y}`)
+
+      console.log(movingplayer.direction)
+
+      if (self.gridEngine.getPosition(`player${movingplayer.playerid}`).x + movingplayer.offsets.x === movingplayer.position.x && self.gridEngine.getPosition(`player${movingplayer.playerid}`).y + movingplayer.offsets.y === movingplayer.position.y) {
+        console.log("going good")
+        self.gridEngine.move(`player${movingplayer.playerid}`, movingplayer.direction)
+      } else {
+        self.gridEngine.moveTo(`player${movingplayer.playerid}`, movingplayer.position)
+      }
     }
   })
 
@@ -220,29 +230,49 @@ function update () {
 
   const cursors = this.input.keyboard.createCursorKeys()
   if (cursors.left.isDown && cursors.up.isDown) {
+    let position = this.gridEngine.getPosition('player')
+    position.x--;
+    position.y--;
     this.gridEngine.move('player', 'up-left')
-    socket.emit('playerMove', 'up-left')
+    socket.emit('playerMove', {direction:'up-left', offsets: {x:-1, y:-1}, position})
   } else if (cursors.left.isDown && cursors.down.isDown) {
+    let position = this.gridEngine.getPosition('player')
+    position.x--;
+    position.y++;
     this.gridEngine.move('player', 'down-left')
-    socket.emit('playerMove', 'down-left')
+    socket.emit('playerMove', {direction:'down-left', offsets: {x:-1, y:1},position})
   } else if (cursors.right.isDown && cursors.up.isDown) {
+    let position = this.gridEngine.getPosition('player')
+    position.x++;
+    position.y--;
     this.gridEngine.move('player', 'up-right')
-    socket.emit('playerMove', 'up-right')
+    socket.emit('playerMove', {direction:'up-right',offsets: {x:1, y:-1}, position})
   } else if (cursors.right.isDown && cursors.down.isDown) {
+    let position = this.gridEngine.getPosition('player')
+    position.x++;
+    position.y++;
     this.gridEngine.move('player', 'down-right')
-    socket.emit('playerMove', 'down-right')
+    socket.emit('playerMove', {direction:'down-right',offsets: {x:1, y:1}, position})
   } else if (cursors.left.isDown) {
+    let position = this.gridEngine.getPosition('player')
+    position.x--;
     this.gridEngine.move('player', 'left')
-    socket.emit('playerMove', 'left')
+    socket.emit('playerMove', {direction:'left',offsets: {x:-1, y:0}, position})
   } else if (cursors.right.isDown) {
+    let position = this.gridEngine.getPosition('player')
+    position.x++;
     this.gridEngine.move('player', 'right')
-    socket.emit('playerMove', 'right')
+    socket.emit('playerMove', {direction:'right', offsets: {x:1, y:0},position})
   } else if (cursors.up.isDown) {
+    let position = this.gridEngine.getPosition('player')
+    position.y--;
     this.gridEngine.move('player', 'up')
-    socket.emit('playerMove', 'up')
+    socket.emit('playerMove', {direction:'up', offsets: {x:0, y:-1}, position})
   } else if (cursors.down.isDown) {
+    let position = this.gridEngine.getPosition('player')
+    position.y++;
     this.gridEngine.move('player', 'down')
-    socket.emit('playerMove', 'down')
+    socket.emit('playerMove', {direction:'down',offsets: {x:0, y:1}, position})
   }
 }
 
