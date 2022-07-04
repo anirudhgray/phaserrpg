@@ -82,10 +82,13 @@ function create () {
         console.log("someone left")
         gridEngineConfig.characters = gridEngineConfig.characters.filter(
           (char) => {
+            if (char.id === `player${data.id}`) {
+              char.sprite.destroy()
+            }
             return char.id !== `player${data.id}`
           }
         )
-        this.newPlayerSprite.destroy()
+        self.gridEngine.removeCharacter(`player${data.id}`)
       }
     })
 
@@ -168,10 +171,14 @@ function create () {
             console.log("someone left")
             gridEngineConfig.characters = gridEngineConfig.characters.filter(
               (char) => {
+                if (char.id === `player${players[id].id}`) {
+                  char.sprite.destroy()
+                }
                 return char.id !== `player${players[id].id}`
               }
             )
-            self.newPlayerSprite.destroy()
+            self.gridEngine.removeCharacter(`player${players[id].id}`)
+            // self.newPlayerSprite.destroy()
           }
         })
       }
