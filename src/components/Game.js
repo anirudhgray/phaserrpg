@@ -116,8 +116,12 @@ function create () {
         self.playerSprite = self.add.sprite(0, 0, 'player')
         self.playerSprite.scale = 3
         self.playerSprite.setDepth(-1)
+
+        const text = self.add.text(0, -10, "You");
+        text.setColor("#000000");
+        const container = self.add.container(0, 0, [self.playerSprite, text]);
       
-        self.cameras.main.startFollow(self.playerSprite)
+        self.cameras.main.startFollow(container, true)
         self.cameras.main.roundPixels = true
         self.cameras.main.setFollowOffset(-self.playerSprite.width, -self.playerSprite.height * 2)
 
@@ -130,7 +134,8 @@ function create () {
               x: players[id].x,
               y: players[id].y
             },
-            speed: 4
+            speed: 4,
+            container
           }
         )
         self.gridEngine.create(cloudCityTilemap, gridEngineConfig)
