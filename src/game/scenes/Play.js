@@ -2,6 +2,8 @@ import Phaser from 'phaser'
 
 import { store } from '../../app/store'
 
+import * as utilFunctions from '../utilFunctions'
+
 import ClientSocket from '../protocol/ClientSocket';
 import ClientPlayer from '../model/ClientPlayer';
 
@@ -118,34 +120,7 @@ class Play extends Phaser.Scene {
     return handlers;
   }
 
-  update() {
-    const cursors = this.input.keyboard.createCursorKeys()
-    if (cursors.left.isDown && cursors.up.isDown) {
-      this.gridEngine.move(this.socket._id, 'up-left')
-      this.socket.emit('playerMove', {direction:'up-left', position: this.gridEngine.getPosition(this.socket._id), offset: {x: -1, y:-1}})
-    } else if (cursors.left.isDown && cursors.down.isDown) {
-      this.gridEngine.move(this.socket._id, 'down-left')
-      this.socket.emit('playerMove', {direction:'down-left', position: this.gridEngine.getPosition(this.socket._id), offset: {x: -1, y:1}})
-    } else if (cursors.right.isDown && cursors.up.isDown) {
-      this.gridEngine.move(this.socket._id, 'up-right')
-      this.socket.emit('playerMove', {direction:'up-right', position: this.gridEngine.getPosition(this.socket._id), offset: {x: 1, y:-1}})
-    } else if (cursors.right.isDown && cursors.down.isDown) {
-      this.gridEngine.move(this.socket._id, 'down-right')
-      this.socket.emit('playerMove', {direction:'down-right', position: this.gridEngine.getPosition(this.socket._id), offset: {x: 1, y:1}})
-    } else if (cursors.left.isDown) {
-      this.gridEngine.move(this.socket._id, 'left')
-      this.socket.emit('playerMove', {direction:'left', position: this.gridEngine.getPosition(this.socket._id), offset: {x: -1, y:0}})
-    } else if (cursors.right.isDown) {
-      this.gridEngine.move(this.socket._id, 'right')
-      this.socket.emit('playerMove', {direction:'right', position: this.gridEngine.getPosition(this.socket._id), offset: {x: 1, y:0}})
-    } else if (cursors.up.isDown) {
-      this.gridEngine.move(this.socket._id, 'up')
-      this.socket.emit('playerMove', {direction:'up', position: this.gridEngine.getPosition(this.socket._id), offset: {x: 0, y:-1}})
-    } else if (cursors.down.isDown) {
-      this.gridEngine.move(this.socket._id, 'down')
-      this.socket.emit('playerMove', {direction:'down', position: this.gridEngine.getPosition(this.socket._id), offset: {x: 0, y:1}})
-    }
-  }
+  update = () => utilFunctions.update(this)
 }
 
 export default Play
