@@ -20,6 +20,10 @@ export default function Game() {
 
   return (
     <>
+      <div className='absolute top-0 left-0 right-0 flex flex-row gap-4 justify-content-between'>
+        <div class='col-3' id='video-you'></div>
+        <div className='col-9 grid' id='video-remotes'></div>
+      </div>
       <div id='game'></div>
     </>
   )

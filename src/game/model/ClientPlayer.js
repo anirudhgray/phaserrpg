@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import {startBasicCall} from '../protocol/AgoraSetup.js'
 
 class ClientPlayer extends Phaser.GameObjects.Container {
   _playerId;
@@ -22,6 +23,7 @@ class ClientPlayer extends Phaser.GameObjects.Container {
       scene.cameras.main.startFollow(this, true)
       scene.cameras.main.roundPixels = true
       scene.cameras.main.setFollowOffset(-this.sprite.width, -this.sprite.height * 2)
+      startBasicCall(socket._id)
     }
 
     gridEngine.addCharacter({
