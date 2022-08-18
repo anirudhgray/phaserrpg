@@ -1,10 +1,14 @@
 import Phaser from 'phaser';
 import {startBasicCall} from '../protocol/AgoraSetup.js'
 
+import { store } from '../../app/store'
+import {setVideo} from '../../app/slices/videoPositionSlice'
+
+
 class ClientPlayer extends Phaser.GameObjects.Container {
   _playerId;
 
-  constructor(scene, x, y, playerId, playerName, avatar, gridEngine, socket) {
+  constructor(scene, x, y, playerId, playerName, avatar, gridEngine, socket, room) {
     super(scene, x, y);
     this.sprite = scene.add.sprite(0, 0, 'player');
     this.sprite.setOrigin(0.5, 0.5).setDisplaySize(50, 50);
@@ -23,7 +27,11 @@ class ClientPlayer extends Phaser.GameObjects.Container {
       scene.cameras.main.startFollow(this, true)
       scene.cameras.main.roundPixels = true
       scene.cameras.main.setFollowOffset(-this.sprite.width, -this.sprite.height * 2)
-      startBasicCall(socket._id)
+      console.log(room)
+
+      store.dispatch(setVideo({uid: socket._id,position: {x,y}}))
+
+      startBasicCall(socket._id, room)
     }
 
     gridEngine.addCharacter({

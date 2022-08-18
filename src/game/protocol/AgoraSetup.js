@@ -1,5 +1,8 @@
 import AgoraRTC from "agora-rtc-sdk-ng";
 
+import { store } from '../../app/store'
+import axios from 'axios'
+
 let rtc = {
     localAudioTrack: null,
     localVideoTrack: null,
@@ -10,16 +13,26 @@ let options = {
     // Pass your App ID here.
     appId: process.env.REACT_APP_APP_ID,
     // Set the channel name.
-    channel: process.env.REACT_APP_CHANNEL,
+    channel: null,
     // Pass your temp token here.
     token: process.env.REACT_APP_TOKEN,
     // Set the user ID.
     uid: null,
 };
 
-export async function startBasicCall(uid) {
+export async function startBasicCall(uid, channel) {
 
     options.uid = uid;
+    options.channel = channel;
+
+    // axios.get('', {
+    //     headers: {
+    //         channel: options.channel
+    //     }
+    // })
+    // .then(res => {
+    //     options.token = res.data.token
+    // })
 
     // Create an AgoraRTCClient object.
     rtc.client = AgoraRTC.createClient({mode: "rtc", codec: "vp8"});
@@ -82,7 +95,11 @@ export async function startBasicCall(uid) {
             localPlayerContainer.textContent = "Local user " + options.uid;
             localPlayerContainer.style.width = "160px";
             localPlayerContainer.style.height = "120px";
-            document.getElementById('video-you').appendChild(localPlayerContainer);
+            localPlayerContainer.style.position = 'absolute';
+            localPlayerContainer.style.top = 0;
+            localPlayerContainer.style.left = 0;
+            // document.getElementById('video-you').appendChild(localPlayerContainer);
+            document.body.append(localPlayerContainer);
 
             // Play the local video track.
             // Pass the DIV container and the SDK dynamically creates a player in the container for playing the local video track.

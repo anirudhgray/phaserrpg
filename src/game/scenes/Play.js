@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 
 import { store } from '../../app/store'
+import { setVideo } from '../../app/slices/videoPositionSlice';
 
 import * as utilFunctions from '../utilFunctions'
 
@@ -28,7 +29,7 @@ class Play extends Phaser.Scene {
   }
 
   displayPlayer(playerInfo) {
-    const player = new ClientPlayer(this, playerInfo.x, playerInfo.y, playerInfo.playerId, playerInfo.playerName, playerInfo.avatar, this.gridEngine, this.socket)
+    const player = new ClientPlayer(this, playerInfo.x, playerInfo.y, playerInfo.playerId, playerInfo.playerName, playerInfo.avatar, this.gridEngine, this.socket, store.getState().initial.roomName)
     this.players.add(player)
   }
 
@@ -48,6 +49,7 @@ class Play extends Phaser.Scene {
     else if (position.x !== this.gridEngine.getPosition(this.socket._id).x || position.y !== this.gridEngine.getPosition(this.socket._id).y) {
       this.socket.emit('fixPosition', this.gridEngine.getPosition(this.socket._id))
     }
+    store.dispatch(setVideo({uid: this.socket._id,position: {x:this.gridEngine.getPosition(this.socket._id).x, y:this.gridEngine.getPosition(this.socket._id).y}}))
   }
 
   enforcePositions(players) {
@@ -120,7 +122,9 @@ class Play extends Phaser.Scene {
     return handlers;
   }
 
-  update = () => utilFunctions.update(this)
+  update = () => {
+    utilFunctions.update(this)
+  }
 }
 
 export default Play

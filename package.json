@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.1",
     "agora-rtc-sdk-ng": "^4.13.0",
+    "axios": "^0.27.2",
     "grid-engine": "^2.17.2",
     "phaser": "^3.55.2",
     "primeflex": "^3.2.1",
