@@ -1,7 +1,7 @@
 import AgoraRTC from "agora-rtc-sdk-ng";
 
-import { store } from '../../app/store'
-import axios from 'axios'
+// import { store } from '../../app/store'
+// import axios from 'axios'
 
 let rtc = {
     localAudioTrack: null,
