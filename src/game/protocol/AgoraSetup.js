@@ -1,6 +1,6 @@
 import AgoraRTC from "agora-rtc-sdk-ng";
 
-import { store } from '../../app/store'
+// import { store } from '../../app/store'
 import axios from 'axios'
 
 let rtc = {
@@ -25,7 +25,7 @@ export async function startBasicCall(uid, channel) {
     options.uid = uid;
     options.channel = channel;
 
-    const getToken = await axios.get(`https://metaverse-backend.herokuapp.com/token?channelName=${options.channel}`, {
+    await axios.get(`https://metaverse-backend.herokuapp.com/token?channelName=${options.channel}`, {
         headers: {
             channel: options.channel
         }
