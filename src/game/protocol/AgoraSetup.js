@@ -1,7 +1,7 @@
 import AgoraRTC from "agora-rtc-sdk-ng";
 
-// import { store } from '../../app/store'
-// import axios from 'axios'
+import { store } from '../../app/store'
+import axios from 'axios'
 
 let rtc = {
     localAudioTrack: null,
@@ -25,14 +25,14 @@ export async function startBasicCall(uid, channel) {
     options.uid = uid;
     options.channel = channel;
 
-    // axios.get('', {
-    //     headers: {
-    //         channel: options.channel
-    //     }
-    // })
-    // .then(res => {
-    //     options.token = res.data.token
-    // })
+    const getToken = await axios.get(`https://metaverse-backend.herokuapp.com/token?channelName=${options.channel}`, {
+        headers: {
+            channel: options.channel
+        }
+    })
+    .then(res => {
+        options.token = res.data.token
+    })
 
     // Create an AgoraRTCClient object.
     rtc.client = AgoraRTC.createClient({mode: "rtc", codec: "vp8"});
