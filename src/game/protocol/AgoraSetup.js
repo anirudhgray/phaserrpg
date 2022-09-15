@@ -55,6 +55,7 @@ export async function startBasicCall(uid, channel) {
             remotePlayerContainer.textContent = "Remote user " + user.uid.toString();
             remotePlayerContainer.style.width = "160px";
             remotePlayerContainer.style.height = "120px";
+            remotePlayerContainer.style.display = 'none'
             document.getElementById('video-remotes').appendChild(remotePlayerContainer);
 
             // Play the remote video track.

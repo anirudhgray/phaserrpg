@@ -179,7 +179,7 @@
         {
          "columns":45,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/metaverse\/src\/assets\/cloud_tileset.png",
+         "image":"cloud_tileset.png",
          "imageheight":448,
          "imagewidth":720,
          "margin":0,

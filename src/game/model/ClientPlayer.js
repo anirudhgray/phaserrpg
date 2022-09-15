@@ -17,7 +17,7 @@ class ClientPlayer extends Phaser.GameObjects.Container {
 
     this._playerId = playerId;
 
-    this.nameText = scene.add.text(0, -45, playerName);
+    this.nameText = scene.add.text(0, -45, playerName+playerId);
     this.add(this.sprite);
     this.add(this.nameText);
 
@@ -33,6 +33,8 @@ class ClientPlayer extends Phaser.GameObjects.Container {
 
       startBasicCall(socket._id, room)
     }
+
+    localStorage.setItem('playerId', playerId)
 
     gridEngine.addCharacter({
       id: playerId,

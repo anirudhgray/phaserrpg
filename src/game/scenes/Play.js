@@ -40,12 +40,31 @@ class Play extends Phaser.Scene {
   }
 
   // direction updates
-  updatePlayers(data) {
+  async updatePlayers(data) {
+    const allPlayers = data.allPlayers
     const player = data.player
     const position = data.position
+    const direction = data.direction
     if (player.playerId !== this.socket._id) {
+      console.log(Math.abs(position.x - this.gridEngine.getPosition(this.socket._id).x)+", "+Math.abs(position.y - this.gridEngine.getPosition(this.socket._id).y))
       this.gridEngine.moveTo(player.playerId,position)
+      if (Math.abs(position.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(position.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
+        document.getElementById('video'+player.playerId).style.display = 'block'
+      } else  {
+        document.getElementById('video'+player.playerId).style.display = 'none'
+      }
+      // const movement = await this.gridEngine.move(player.playerId, direction)
+      // if (movement && (this.gridEngine.getPosition(player.playerId).x !== position.x || this.gridEngine.getPosition(player.playerId).y !== position.y)) this.gridEngine.moveTo(player.playerId,position)
     } 
+    else if (player.playerId === this.socket._id) {
+      Object.values(allPlayers).forEach(p => {
+        if (Math.abs(p.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(p.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
+          document.getElementById('video'+p.playerId).style.display = 'block'
+        } else  {
+          document.getElementById('video'+p.playerId).style.display = 'none'
+        }
+      })
+    }
     else if (position.x !== this.gridEngine.getPosition(this.socket._id).x || position.y !== this.gridEngine.getPosition(this.socket._id).y) {
       this.socket.emit('fixPosition', this.gridEngine.getPosition(this.socket._id))
     }
@@ -101,7 +120,8 @@ class Play extends Phaser.Scene {
     this.gridEngine.create(cloudCityTilemap, gridEngineConfig)
 
     this.socket.emit('newJoin', {
-      name: store.getState().initial.charName
+      name: store.getState().initial.charName,
+      data: localStorage.getItem('playerId')
     })
 
     document.addEventListener('visibilitychange', () => {
