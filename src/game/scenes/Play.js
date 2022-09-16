@@ -48,26 +48,31 @@ class Play extends Phaser.Scene {
     if (player.playerId !== this.socket._id) {
       console.log(Math.abs(position.x - this.gridEngine.getPosition(this.socket._id).x)+", "+Math.abs(position.y - this.gridEngine.getPosition(this.socket._id).y))
       this.gridEngine.moveTo(player.playerId,position)
-      if (Math.abs(position.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(position.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
-        document.getElementById('video'+player.playerId).style.display = 'block'
-      } else  {
-        document.getElementById('video'+player.playerId).style.display = 'none'
+      if (document.getElementById('video'+player.playerId)) {
+        if (Math.abs(position.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(position.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
+          document.getElementById('video'+player.playerId).style.display = 'block'
+        } else  {
+          document.getElementById('video'+player.playerId).style.display = 'none'
+        }
       }
       // const movement = await this.gridEngine.move(player.playerId, direction)
       // if (movement && (this.gridEngine.getPosition(player.playerId).x !== position.x || this.gridEngine.getPosition(player.playerId).y !== position.y)) this.gridEngine.moveTo(player.playerId,position)
     } 
     else if (player.playerId === this.socket._id) {
       Object.values(allPlayers).forEach(p => {
-        if (Math.abs(p.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(p.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
-          document.getElementById('video'+p.playerId).style.display = 'block'
-        } else  {
-          document.getElementById('video'+p.playerId).style.display = 'none'
+        if (p.playerId !== this.socket._id && document.getElementById('video'+p.playerId)) {
+          if (Math.abs(p.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(p.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
+            document.getElementById('video'+p.playerId).style.display = 'block'
+          } else  {
+            document.getElementById('video'+p.playerId).style.display = 'none'
+          }
         }
       })
     }
     else if (position.x !== this.gridEngine.getPosition(this.socket._id).x || position.y !== this.gridEngine.getPosition(this.socket._id).y) {
       this.socket.emit('fixPosition', this.gridEngine.getPosition(this.socket._id))
     }
+    console.log(`${player.playerId} moved to ${position.x},${position.y}`)
     store.dispatch(setVideo({uid: this.socket._id,position: {x:this.gridEngine.getPosition(this.socket._id).x, y:this.gridEngine.getPosition(this.socket._id).y}}))
   }
 
