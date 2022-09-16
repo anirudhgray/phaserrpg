@@ -44,7 +44,7 @@ class Play extends Phaser.Scene {
     const allPlayers = data.allPlayers
     const player = data.player
     const position = data.position
-    const direction = data.direction
+    // const direction = data.direction
     if (player.playerId !== this.socket._id) {
       console.log(Math.abs(position.x - this.gridEngine.getPosition(this.socket._id).x)+", "+Math.abs(position.y - this.gridEngine.getPosition(this.socket._id).y))
       this.gridEngine.moveTo(player.playerId,position)
