@@ -24,7 +24,8 @@ export default function Game() {
         <div className='col-3 relative' id='video-you'>
         </div>
         <div className='col-9 grid' id='video-remotes'></div>
-        <button className='absolute top-0 left-0 mt-8' id='mute'>Mute</button>
+        <button className='absolute top-0 left-0 mt-8' id='mute'>Mic On</button>
+        <button className='absolute top-0 left-0 mt-6' id='camera'>Camera On</button>
       </div>
       <div id='game'></div>
     </>

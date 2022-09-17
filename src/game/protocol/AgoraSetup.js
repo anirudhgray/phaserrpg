@@ -89,14 +89,26 @@ export async function startBasicCall(uid, channel) {
             rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
 
             document.getElementById('mute').addEventListener('click',function (e) {
-                if (e.currentTarget.textContent === 'Mute') {
-                    e.currentTarget.textContent = 'Unmute'
+                if (e.currentTarget.textContent === 'Mic On') {
+                    e.currentTarget.textContent = 'Mic Off'
                     console.log("ok")
                     rtc.localAudioTrack.setEnabled(false)
                 } else {
-                    e.currentTarget.textContent = 'Mute'
+                    e.currentTarget.textContent = 'Mic On'
                     console.log("ok")
                     rtc.localAudioTrack.setEnabled(true)
+                }
+            })
+
+            document.getElementById('camera').addEventListener('click',function (e) {
+                if (e.currentTarget.textContent === 'Camera On') {
+                    e.currentTarget.textContent = 'Camera Off'
+                    console.log("ok")
+                    rtc.localVideoTrack.setEnabled(false)
+                } else {
+                    e.currentTarget.textContent = 'Camera On'
+                    console.log("ok")
+                    rtc.localVideoTrack.setEnabled(true)
                 }
             })
             // Publish the local audio and video tracks to the RTC channel.
