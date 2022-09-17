@@ -56,10 +56,12 @@ class Play extends Phaser.Scene {
           store.dispatch(addProximalPlayer({player:player}))
           checkProximityMute(player.playerId, true)
           document.getElementById('video'+player.playerId).style.display = 'block'
+          document.getElementById('remote'+player.playerId).style.display = 'block'
         } else  {
           store.dispatch(addProximalPlayer({player:player}))
           checkProximityMute(player.playerId, false)
           document.getElementById('video'+player.playerId).style.display = 'none'
+          document.getElementById('remote'+player.playerId).style.display = 'none'
         }
       }
       // const movement = await this.gridEngine.move(player.playerId, direction)
@@ -72,10 +74,12 @@ class Play extends Phaser.Scene {
             store.dispatch(addProximalPlayer({player:p}))
             checkProximityMute(p.playerId, true)
             document.getElementById('video'+p.playerId).style.display = 'block'
+            document.getElementById('remote'+p.playerId).style.display = 'block'
           } else  {
             store.dispatch(removeProximalPlayer({player:p}))
             checkProximityMute(p.playerId, false)
             document.getElementById('video'+p.playerId).style.display = 'none'
+            document.getElementById('remote'+p.playerId).style.display = 'none'
           }
         }
       })

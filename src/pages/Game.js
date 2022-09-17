@@ -20,12 +20,20 @@ export default function Game() {
 
   return (
     <>
-      <div className='absolute top-0 left-0 right-0 flex flex-row gap-4 justify-content-between'>
-        <div className='col-3 relative' id='video-you'>
+      <div className="absolute overflow-hidden top-0 left-0 h-screen w-screen">
+        <div className="absolute top-0 left-0 h-screen flex flex-column justify-content-between">
+          <div className='m-3 w-screen overflow-auto'>
+          <div className='flex gap-3' id='video-remotes'></div>
+          </div>
+          <div>
+            <div style={{wordBreak: 'break-word'}} className='m-3 w-min' id='video-you'></div>
+            <div className='p-3 flex gap-2 flex-row'>
+              <p>{roomId}</p>
+              <button id='mute'>Mic On</button>
+              <button id='camera'>Camera On</button>
+            </div>
+          </div>
         </div>
-        <div className='col-9 grid' id='video-remotes'></div>
-        <button className='absolute top-0 left-0 mt-8' id='mute'>Mic On</button>
-        <button className='absolute top-0 left-0 mt-6' id='camera'>Camera On</button>
       </div>
       <div id='game'></div>
     </>

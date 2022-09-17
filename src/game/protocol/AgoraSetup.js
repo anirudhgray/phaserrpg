@@ -59,21 +59,34 @@ export async function startBasicCall(uid, channel) {
 
         // If the remote user publishes a video track.
         if (mediaType === "video") {
-            // Get the RemoteVideoTrack object in the AgoraRTCRemoteUser object.
-            const remoteVideoTrack = user.videoTrack;
-            // Dynamically create a container in the form of a DIV element for playing the remote video track.
-            const remotePlayerContainer = document.createElement("div");
-            // Specify the ID of the DIV container. You can use the uid of the remote user.
-            remotePlayerContainer.id = 'video'+ user.uid.toString();
-            remotePlayerContainer.textContent = "Remote user " + user.uid.toString();
-            remotePlayerContainer.style.width = "160px";
-            remotePlayerContainer.style.height = "120px";
-            remotePlayerContainer.style.display = 'none'
-            document.getElementById('video-remotes').appendChild(remotePlayerContainer);
+            if (!document.getElementById('remote'+user.uid.toString())) {
+                // Get the RemoteVideoTrack object in the AgoraRTCRemoteUser object.
+                const remoteVideoTrack = user.videoTrack;
+                // Dynamically create a container in the form of a DIV element for playing the remote video track.
+                const remotePlayerContainer = document.createElement("div");
+                const remotePlayerLabel = document.createElement("p");
+                const remotePlayerItem = document.createElement("div");
+                remotePlayerItem.style.wordBreak = "break-word"
+                remotePlayerItem.className = 'w-min'
+                remotePlayerItem.id = 'remote' +user.uid.toString()
+                remotePlayerItem.appendChild(remotePlayerLabel)
+                remotePlayerItem.appendChild(remotePlayerContainer)
+                // Specify the ID of the DIV container. You can use the uid of the remote user.
+                remotePlayerContainer.id = 'video'+ user.uid.toString();
+                remotePlayerLabel.textContent = "Remote user " + user.uid.toString();
+                remotePlayerContainer.style.width = "160px";
+                remotePlayerContainer.style.height = "120px";
+                remotePlayerItem.style.display = 'none'
+                document.getElementById('video-remotes').appendChild(remotePlayerItem);
 
-            // Play the remote video track.
-            // Pass the DIV container and the SDK dynamically creates a player in the container for playing the remote video track.
-            remoteVideoTrack.play(remotePlayerContainer);
+                // Play the remote video track.
+                // Pass the DIV container and the SDK dynamically creates a player in the container for playing the remote video track.
+                remoteVideoTrack.play(remotePlayerContainer);
+            } else {
+                const remoteVideoTrack = user.videoTrack;
+                const remotePlayerContainer = document.getElementById('video'+user.uid.toString())
+                remoteVideoTrack.play(remotePlayerContainer)
+            }
         }
 
         // If the remote user publishes an audio track.
@@ -87,9 +100,9 @@ export async function startBasicCall(uid, channel) {
         // Listen for the "user-unpublished" event
         rtc.client.on("user-left", user => {
             // Get the dynamically created DIV container.
-            const remotePlayerContainer = document.getElementById('video'+user.uid);
+            const remotePlayerItem = document.getElementById('remote'+user.uid);
             // Destroy the container.
-            remotePlayerContainer.remove();
+            remotePlayerItem.remove();
         });
     });
 
@@ -130,12 +143,14 @@ export async function startBasicCall(uid, channel) {
             const localPlayerContainer = document.createElement("div");
             // Specify the ID of the DIV container. You can use the uid of the local user.
             localPlayerContainer.id = options.uid;
-            localPlayerContainer.textContent = "Local user " + options.uid;
+            const localPlayerLabel = document.createElement("p")
+            localPlayerLabel.textContent = "Local user " + options.uid;
             localPlayerContainer.style.width = "160px";
             localPlayerContainer.style.height = "120px";
-            localPlayerContainer.style.position = 'absolute';
-            localPlayerContainer.style.top = 0;
-            localPlayerContainer.style.left = 0;
+            // localPlayerContainer.style.position = 'absolute';
+            // localPlayerContainer.style.top = 0;
+            // localPlayerContainer.style.left = 0;
+            document.getElementById('video-you').appendChild(localPlayerLabel)
             document.getElementById('video-you').appendChild(localPlayerContainer);
 
             // Play the local video track.
