@@ -72,7 +72,7 @@ export async function startBasicCall(uid, channel) {
         }
 
         // Listen for the "user-unpublished" event
-        rtc.client.on("user-unpublished", user => {
+        rtc.client.on("user-left", user => {
             // Get the dynamically created DIV container.
             const remotePlayerContainer = document.getElementById('video'+user.uid);
             // Destroy the container.
@@ -87,6 +87,18 @@ export async function startBasicCall(uid, channel) {
             rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
             // Create a local video track from the video captured by a camera.
             rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
+
+            document.getElementById('mute').addEventListener('click',function (e) {
+                if (e.currentTarget.textContent === 'Mute') {
+                    e.currentTarget.textContent = 'Unmute'
+                    console.log("ok")
+                    rtc.localAudioTrack.setEnabled(false)
+                } else {
+                    e.currentTarget.textContent = 'Mute'
+                    console.log("ok")
+                    rtc.localAudioTrack.setEnabled(true)
+                }
+            })
             // Publish the local audio and video tracks to the RTC channel.
             await rtc.client.publish([rtc.localAudioTrack, rtc.localVideoTrack]);
             // Dynamically create a container in the form of a DIV element for playing the local video track.
@@ -99,8 +111,7 @@ export async function startBasicCall(uid, channel) {
             localPlayerContainer.style.position = 'absolute';
             localPlayerContainer.style.top = 0;
             localPlayerContainer.style.left = 0;
-            // document.getElementById('video-you').appendChild(localPlayerContainer);
-            document.body.append(localPlayerContainer);
+            document.getElementById('video-you').appendChild(localPlayerContainer);
 
             // Play the local video track.
             // Pass the DIV container and the SDK dynamically creates a player in the container for playing the local video track.
