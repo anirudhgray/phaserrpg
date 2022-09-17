@@ -12,6 +12,9 @@ import ClientPlayer from '../model/ClientPlayer';
 import cloudCityJSON from '../assets/cloud_city.json'
 import cloudCityTilesetImage from '../assets/cloud_tileset.png'
 import charactersImages from '../assets/characters.png'
+import { addProximalPlayer, removeProximalPlayer } from '../../app/slices/proximityMuteSlice';
+
+import {checkProximityMute} from '../protocol/AgoraSetup.js'
 
 class Play extends Phaser.Scene {
 
@@ -50,8 +53,12 @@ class Play extends Phaser.Scene {
       this.gridEngine.moveTo(player.playerId,position)
       if (document.getElementById('video'+player.playerId)) {
         if (Math.abs(position.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(position.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
+          store.dispatch(addProximalPlayer({player:player}))
+          checkProximityMute(player.playerId, true)
           document.getElementById('video'+player.playerId).style.display = 'block'
         } else  {
+          store.dispatch(addProximalPlayer({player:player}))
+          checkProximityMute(player.playerId, false)
           document.getElementById('video'+player.playerId).style.display = 'none'
         }
       }
@@ -62,8 +69,12 @@ class Play extends Phaser.Scene {
       Object.values(allPlayers).forEach(p => {
         if (p.playerId !== this.socket._id && document.getElementById('video'+p.playerId)) {
           if (Math.abs(p.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(p.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
+            store.dispatch(addProximalPlayer({player:p}))
+            checkProximityMute(p.playerId, true)
             document.getElementById('video'+p.playerId).style.display = 'block'
           } else  {
+            store.dispatch(removeProximalPlayer({player:p}))
+            checkProximityMute(p.playerId, false)
             document.getElementById('video'+p.playerId).style.display = 'none'
           }
         }

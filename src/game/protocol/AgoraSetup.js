@@ -20,6 +20,18 @@ let options = {
     uid: null,
 };
 
+let currUsers = {}
+
+export async function checkProximityMute(uid, status) {
+    console.log(currUsers[uid], status)
+    if (currUsers[uid].audioTrack) {
+        if (status)
+        currUsers[uid].audioTrack.play()
+        else
+        currUsers[uid].audioTrack.stop()
+    }
+}
+
 export async function startBasicCall(uid, channel) {
 
     options.uid = uid;
@@ -43,6 +55,7 @@ export async function startBasicCall(uid, channel) {
         // Subscribe to the remote user when the SDK triggers the "user-published" event
         await rtc.client.subscribe(user, mediaType);
         console.log("subscribe success");
+        currUsers[user.uid.toString()] = user
 
         // If the remote user publishes a video track.
         if (mediaType === "video") {
