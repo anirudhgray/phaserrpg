@@ -24,16 +24,21 @@ let muted = false;
 let novideo = false;
 
 let currUsers = {}
+let meditatingUsers = []
+
+export async function toggleBroadcast(uid, status) {
+}
 
 export async function toggleTransmission(uid, status) {
     if (!status) {
+        meditatingUsers.push(uid)
+        console.log(meditatingUsers)
         if (rtc.localAudioTrack) {
             rtc.localAudioTrack.setEnabled(false)
         } if (rtc.localVideoTrack) {
             rtc.localVideoTrack.setEnabled(false)
         }
         Object.keys(currUsers).forEach(uid => {
-            if (currUsers[uid].audioTrack)
             currUsers[uid].audioTrack.stop()
             if (currUsers[uid].videoTrack)
             currUsers[uid].videoTrack.stop()
@@ -42,6 +47,11 @@ export async function toggleTransmission(uid, status) {
             // document.getElementById('remote'+uid).style.display = 'none'
         })
     } else {
+        const index = meditatingUsers.indexOf(uid);
+        if (index > -1) {
+        meditatingUsers.splice(index, 1);
+        }
+        console.log(meditatingUsers)
         if (!muted) {
             if (rtc.localAudioTrack) {
                 rtc.localAudioTrack.setEnabled(true)
@@ -61,14 +71,14 @@ export async function toggleTransmission(uid, status) {
     }
 }
 
-export async function checkProximityMute(uid, status) {
-    console.log(currUsers[uid], status)
-    if (currUsers[uid].audioTrack) {
-        if (status)
-        currUsers[uid].audioTrack.play()
-        else
-        currUsers[uid].audioTrack.stop()
-    } 
+export async function checkProximityMute(uid, status, curr) {
+        console.log(currUsers[uid], status)
+        if (currUsers[uid].audioTrack) {
+            if (status)
+            currUsers[uid].audioTrack.play()
+            else
+            currUsers[uid].audioTrack.stop()
+        } 
     // if (currUsers[uid].videoTrack) {
     //     if (status)
     //     currUsers[uid].videoTrack.play(document.getElementById('video'+uid.toString()))

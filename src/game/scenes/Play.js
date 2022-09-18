@@ -14,9 +14,9 @@ import cloudCityTilesetImage from '../assets/cloud_tileset.png'
 import charactersImages from '../assets/characters.png'
 import { addProximalPlayer, removeProximalPlayer } from '../../app/slices/proximityMuteSlice';
 
-import {checkProximityMute, toggleTransmission} from '../protocol/AgoraSetup.js'
+import {checkProximityMute, toggleTransmission, toggleBroadcast} from '../protocol/AgoraSetup.js'
 
-import hasMeditationTrigger from './helper/meditationTrigger';
+import {hasMeditationTrigger, hasBroadcastTrigger} from './helper/tileTriggers';
 
 class Play extends Phaser.Scene {
 
@@ -57,12 +57,12 @@ class Play extends Phaser.Scene {
       if (document.getElementById('video'+player.playerId)) {
         if (Math.abs(position.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(position.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
           store.dispatch(addProximalPlayer({player:player}))
-          checkProximityMute(player.playerId, true)
+          checkProximityMute(player.playerId, true, this.socket._id)
           document.getElementById('video'+player.playerId).style.display = 'block'
           document.getElementById('remote'+player.playerId).style.display = 'block'
         } else  {
           store.dispatch(addProximalPlayer({player:player}))
-          checkProximityMute(player.playerId, false)
+          checkProximityMute(player.playerId, false, this.socket._id)
           document.getElementById('video'+player.playerId).style.display = 'none'
           document.getElementById('remote'+player.playerId).style.display = 'none'
         }
@@ -75,12 +75,12 @@ class Play extends Phaser.Scene {
         if (p.playerId !== this.socket._id && document.getElementById('video'+p.playerId)) {
           if (Math.abs(p.x - this.gridEngine.getPosition(this.socket._id).x) <= 2 && Math.abs(p.y - this.gridEngine.getPosition(this.socket._id).y) <= 2) {
             store.dispatch(addProximalPlayer({player:p}))
-            checkProximityMute(p.playerId, true)
+            checkProximityMute(p.playerId, true, this.socket._id)
             document.getElementById('video'+p.playerId).style.display = 'block'
             document.getElementById('remote'+p.playerId).style.display = 'block'
           } else  {
             store.dispatch(removeProximalPlayer({player:p}))
-            checkProximityMute(p.playerId, false)
+            checkProximityMute(p.playerId, false, this.socket._id)
             document.getElementById('video'+p.playerId).style.display = 'none'
             document.getElementById('remote'+p.playerId).style.display = 'none'
           }
@@ -159,9 +159,17 @@ class Play extends Phaser.Scene {
           console.log("meditate.")
           toggleTransmission(charId,false)
         }
-        if (hasMeditationTrigger(cloudCityTilemap, exitTile)) {
+        if (!hasMeditationTrigger(cloudCityTilemap, enterTile) && hasMeditationTrigger(cloudCityTilemap, exitTile)) {
           console.log("rage.")
           toggleTransmission(charId,true)
+        }
+        if (hasBroadcastTrigger(cloudCityTilemap, enterTile)) {
+          console.log("speak.")
+          toggleBroadcast(charId, true)
+        }
+        if (!hasBroadcastTrigger(cloudCityTilemap, enterTile) && hasBroadcastTrigger(cloudCityTilemap, exitTile)) {
+          console.log("silence.")
+          toggleBroadcast(charId, false)
         }
       }
     })
