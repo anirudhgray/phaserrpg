@@ -32,14 +32,15 @@ export async function toggleTransmission(uid, status) {
         } if (rtc.localVideoTrack) {
             rtc.localVideoTrack.setEnabled(false)
         }
-        // Object.keys(currUsers).forEach(uid => {
-        //     if (currUsers[uid].audioTrack)
-        //     currUsers[uid].audioTrack.stop()
-        //     if (currUsers[uid].videoTrack)
-        //     currUsers[uid].videoTrack.stop()
-        //     // document.getElementById('video'+uid).style.display = 'none'
-        //     // document.getElementById('remote'+uid).style.display = 'none'
-        // })
+        Object.keys(currUsers).forEach(uid => {
+            if (currUsers[uid].audioTrack)
+            currUsers[uid].audioTrack.stop()
+            if (currUsers[uid].videoTrack)
+            currUsers[uid].videoTrack.stop()
+            document.getElementById('video'+uid.toString()).style.background = 'purple'
+            // document.getElementById('video'+uid).style.display = 'none'
+            // document.getElementById('remote'+uid).style.display = 'none'
+        })
     } else {
         if (!muted) {
             if (rtc.localAudioTrack) {
@@ -50,7 +51,13 @@ export async function toggleTransmission(uid, status) {
                 rtc.localVideoTrack.setEnabled(true)
             }
         }
-        console.log("hmmm")
+        Object.keys(currUsers).forEach(uid => {
+            if (currUsers[uid].videoTrack)
+            console.log("jhm")
+            currUsers[uid].videoTrack.play(document.getElementById('video'+uid.toString()))
+            // document.getElementById('video'+uid).style.display = 'none'
+            // document.getElementById('remote'+uid).style.display = 'none'
+        })
     }
 }
 
