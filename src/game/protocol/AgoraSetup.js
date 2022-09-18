@@ -32,22 +32,25 @@ export async function toggleTransmission(uid, status) {
         } if (rtc.localVideoTrack) {
             rtc.localVideoTrack.setEnabled(false)
         }
-        Object.keys(currUsers).forEach(uid => {
-            if (currUsers[uid].audioTrack)
-            currUsers[uid].audioTrack.stop()
-            if (currUsers[uid].videoTrack)
-            currUsers[uid].videoTrack.stop()
-        })
+        // Object.keys(currUsers).forEach(uid => {
+        //     if (currUsers[uid].audioTrack)
+        //     currUsers[uid].audioTrack.stop()
+        //     if (currUsers[uid].videoTrack)
+        //     currUsers[uid].videoTrack.stop()
+        //     // document.getElementById('video'+uid).style.display = 'none'
+        //     // document.getElementById('remote'+uid).style.display = 'none'
+        // })
     } else {
         if (!muted) {
             if (rtc.localAudioTrack) {
-                rtc.localAudioTrack.setEnabled(status)
+                rtc.localAudioTrack.setEnabled(true)
             } 
         } if (!novideo) {
             if (rtc.localVideoTrack) {
-                rtc.localVideoTrack.setEnabled(status)
+                rtc.localVideoTrack.setEnabled(true)
             }
         }
+        console.log("hmmm")
     }
 }
 
@@ -58,7 +61,13 @@ export async function checkProximityMute(uid, status) {
         currUsers[uid].audioTrack.play()
         else
         currUsers[uid].audioTrack.stop()
-    }
+    } 
+    // if (currUsers[uid].videoTrack) {
+    //     if (status)
+    //     currUsers[uid].videoTrack.play(document.getElementById('video'+uid.toString()))
+    //     else
+    //     currUsers[uid].videoTrack.stop()
+    // }
 }
 
 export async function startBasicCall(uid, channel) {

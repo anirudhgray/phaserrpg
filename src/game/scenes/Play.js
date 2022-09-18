@@ -153,15 +153,16 @@ class Play extends Phaser.Scene {
       }
     })
 
-    this.gridEngine.positionChangeStarted().subscribe(({ charId, exitTile, enterTile }) => {
-      console.log(charId)
-      if (hasMeditationTrigger(cloudCityTilemap, enterTile)) {
-        console.log("meditate.")
-        toggleTransmission(charId,false)
-      }
-      if (hasMeditationTrigger(cloudCityTilemap, exitTile)) {
-        console.log("rage.")
-        toggleTransmission(charId,true)
+    this.gridEngine.positionChangeFinished().subscribe(({ charId, exitTile, enterTile }) => {
+      if (charId === this.socket._id) {
+        if (hasMeditationTrigger(cloudCityTilemap, enterTile)) {
+          console.log("meditate.")
+          toggleTransmission(charId,false)
+        }
+        if (hasMeditationTrigger(cloudCityTilemap, exitTile)) {
+          console.log("rage.")
+          toggleTransmission(charId,true)
+        }
       }
     })
   }
