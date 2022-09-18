@@ -20,7 +20,36 @@ let options = {
     uid: null,
 };
 
+let muted = false;
+let novideo = false;
+
 let currUsers = {}
+
+export async function toggleTransmission(uid, status) {
+    if (!status) {
+        if (rtc.localAudioTrack) {
+            rtc.localAudioTrack.setEnabled(false)
+        } if (rtc.localVideoTrack) {
+            rtc.localVideoTrack.setEnabled(false)
+        }
+        Object.keys(currUsers).forEach(uid => {
+            if (currUsers[uid].audioTrack)
+            currUsers[uid].audioTrack.stop()
+            if (currUsers[uid].videoTrack)
+            currUsers[uid].videoTrack.stop()
+        })
+    } else {
+        if (!muted) {
+            if (rtc.localAudioTrack) {
+                rtc.localAudioTrack.setEnabled(status)
+            } 
+        } if (!novideo) {
+            if (rtc.localVideoTrack) {
+                rtc.localVideoTrack.setEnabled(status)
+            }
+        }
+    }
+}
 
 export async function checkProximityMute(uid, status) {
     console.log(currUsers[uid], status)
@@ -98,6 +127,13 @@ export async function startBasicCall(uid, channel) {
         }
 
         // Listen for the "user-unpublished" event
+        rtc.client.on("user-unpublished", (user, mediaType) => {
+            if (mediaType === 'video') {
+                const remotePlayerContainer = document.getElementById('video'+user.uid.toString())
+                remotePlayerContainer.style.background = 'purple'
+            }
+        });
+
         rtc.client.on("user-left", user => {
             // Get the dynamically created DIV container.
             const remotePlayerItem = document.getElementById('remote'+user.uid);
@@ -117,10 +153,12 @@ export async function startBasicCall(uid, channel) {
             document.getElementById('mute').addEventListener('click',function (e) {
                 if (e.currentTarget.textContent === 'Mic On') {
                     e.currentTarget.textContent = 'Mic Off'
+                    muted = true
                     console.log("ok")
                     rtc.localAudioTrack.setEnabled(false)
                 } else {
                     e.currentTarget.textContent = 'Mic On'
+                    muted = false
                     console.log("ok")
                     rtc.localAudioTrack.setEnabled(true)
                 }
@@ -129,10 +167,12 @@ export async function startBasicCall(uid, channel) {
             document.getElementById('camera').addEventListener('click',function (e) {
                 if (e.currentTarget.textContent === 'Camera On') {
                     e.currentTarget.textContent = 'Camera Off'
+                    novideo = true
                     console.log("ok")
                     rtc.localVideoTrack.setEnabled(false)
                 } else {
                     e.currentTarget.textContent = 'Camera On'
+                    novideo = false
                     console.log("ok")
                     rtc.localVideoTrack.setEnabled(true)
                 }

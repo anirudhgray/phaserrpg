@@ -14,7 +14,9 @@ import cloudCityTilesetImage from '../assets/cloud_tileset.png'
 import charactersImages from '../assets/characters.png'
 import { addProximalPlayer, removeProximalPlayer } from '../../app/slices/proximityMuteSlice';
 
-import {checkProximityMute} from '../protocol/AgoraSetup.js'
+import {checkProximityMute, toggleTransmission} from '../protocol/AgoraSetup.js'
+
+import hasMeditationTrigger from './helper/meditationTrigger';
 
 class Play extends Phaser.Scene {
 
@@ -23,6 +25,7 @@ class Play extends Phaser.Scene {
   }
 
   removePlayer(playerId) {
+    console.log(playerId + ' disconnected')
     this.players.getChildren().forEach((player) => {
       if (playerId === player.playerId) {
         player.destroy();
@@ -147,6 +150,18 @@ class Play extends Phaser.Scene {
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
         this.socket.emit('getPlayers')
+      }
+    })
+
+    this.gridEngine.positionChangeStarted().subscribe(({ charId, exitTile, enterTile }) => {
+      console.log(charId)
+      if (hasMeditationTrigger(cloudCityTilemap, enterTile)) {
+        console.log("meditate.")
+        toggleTransmission(charId,false)
+      }
+      if (hasMeditationTrigger(cloudCityTilemap, exitTile)) {
+        console.log("rage.")
+        toggleTransmission(charId,true)
       }
     })
   }
