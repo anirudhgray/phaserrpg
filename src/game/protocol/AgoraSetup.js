@@ -39,6 +39,7 @@ export async function toggleTransmission(uid, status) {
             rtc.localVideoTrack.setEnabled(false)
         }
         Object.keys(currUsers).forEach(uid => {
+            if (currUsers[uid].audioTrack)
             currUsers[uid].audioTrack.stop()
             if (currUsers[uid].videoTrack)
             currUsers[uid].videoTrack.stop()
@@ -72,8 +73,8 @@ export async function toggleTransmission(uid, status) {
 }
 
 export async function checkProximityMute(uid, status, curr) {
-        console.log(currUsers[uid], status)
-        if (currUsers[uid].audioTrack) {
+        console.log(currUsers[uid], status, meditatingUsers, curr, !meditatingUsers.includes(curr))
+        if (currUsers[uid].audioTrack && !meditatingUsers.includes(curr)) {
             if (status)
             currUsers[uid].audioTrack.play()
             else
