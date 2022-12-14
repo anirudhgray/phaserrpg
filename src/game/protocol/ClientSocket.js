@@ -3,7 +3,7 @@ import {io} from 'socket.io-client'
 export default class ClientSocket {
   _id;
   constructor() {
-    const server = 'https://phaserrpg-server.herokuapp.com/';
+    const server = 'https://phaserrpg-server-production.up.railway.app/';
     // const server = 'http://127.0.0.1:8081'
     const connOptions = {
       forceNew: true

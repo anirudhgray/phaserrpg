@@ -93,7 +93,7 @@ export async function startBasicCall(uid, channel) {
     options.uid = uid;
     options.channel = channel;
 
-    await axios.get(`https://metaverse-backend.herokuapp.com/token?channelName=${options.channel}`, {
+    await axios.get(`https://metaverse-backend-production.up.railway.app/token?channelName=${options.channel}`, {
         headers: {
             channel: options.channel
         }
