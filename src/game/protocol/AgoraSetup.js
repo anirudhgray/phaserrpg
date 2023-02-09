@@ -11,7 +11,7 @@ let rtc = {
 
 let options = {
     // Pass your App ID here.
-    appId: process.env.REACT_APP_APP_ID,
+    appId: "518f023ac8914a01ae145dde28b4fb40",
     // Set the channel name.
     channel: null,
     // Pass your temp token here.
